@@ -31,8 +31,6 @@ We load a phishing file from the T1566 folder "zscalar_web_proxy.json"
 ![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing2.png)
 ![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing3.png)
 
-
-
 Analyzing the events, we notice three things:
 1. It has GET and POST requests, meaning it was sending POST requests through a suspicious URL until it managed to enter and then send GET requests.
 2. In the event_id = "012" the category filetype change of "none" to "GZIP", and the category action change of "Blocked" to "Allowed", indicating that at this time the attacker managed to compromise the machine and enter the server 
