@@ -52,5 +52,9 @@ Recomendaciones de mitigación:
 - Traffic Monitoring: Look for outgoing connections to suspicious servers.
 - Policy Enforcement: Review Zscaler rules to prevent unauthorized file executions.
 
+# Credential Dump
+We load a credential dump file from the T1003 folder "mimikatzwindows-sysmon.log"
 
-    
+
+
+
