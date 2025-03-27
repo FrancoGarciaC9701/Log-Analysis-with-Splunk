@@ -29,7 +29,7 @@ We load a phishing file from the T1566 folder "zscalar_web_proxy.json"
 
 ![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing1.png)
 ![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing2.png)
-![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing3.png)
+![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/35b31255dc22d8d134d86a273d978ed275aad672/assets/phishing3.png)
 
 Analyzing the events, we notice three things:
 1. It has GET and POST requests, meaning it was sending POST requests through a suspicious URL until it managed to enter and then send GET requests.
