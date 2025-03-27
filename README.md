@@ -70,3 +70,10 @@ Key Details:
 
 This could be an attempt to steal credentials or attempt lateral movement on the network.
 
+# Data Exfiltration
+We load a Data Exfiltration file from the T1020 folder "windows-security.log"
+
+
+
+
+
