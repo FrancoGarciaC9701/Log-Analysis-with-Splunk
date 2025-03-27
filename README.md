@@ -10,6 +10,8 @@ We ingested data from the "attack_data" repository found on GitHub and used Splu
 images and brief explanation of the queries used
 
 # Brute Force
+We load a brute force file from the T1110.001 folder "high_number_of_login_failures_from_a_single_source.json" and run the following query
+
 ![Fuerza bruta](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8efc82f424620bd681fdef0d95f2c9145cb49a6b/assets/brute-force1.png)
 
 This shows us the query
@@ -21,6 +23,9 @@ We have several login attempts that give "Success" and then something fails from
 - Temporarily block the IP and activate MFA
 - Create an alert in Splunk to detect similar patterns
 - Review the logs for other attack patterns
+
+# Phising
+
 
   
   
