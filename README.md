@@ -9,7 +9,7 @@ We ingested data from the "attack_data" repository found on GitHub and used Splu
 ## SPL queries used
   
   # Brute Force:
-    !![Brute Force Dashboard](https://github.com/usuario/repositorio/raw/main/assets/brute-force1.png)
+    ![Brute Force Dashboard](https://github.com/usuario/repositorio/raw/main/assets/brute-force1.png)
 
 
     
