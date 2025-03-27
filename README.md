@@ -27,6 +27,9 @@ We have several login attempts that give "Success" and then something fails from
 # Phising
 We load a phishing file from the T1566 folder "zscalar_web_proxy.json"
 
+![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing1.png)
+![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing2.png)
+
 
 Analizando los eventos nos damos cuenta de dos cosas:
 1. Tiene solicitudes GET y POST, es decir, que estuvo mandando solicitudes POST a través de una URL sospechosa hasta que consiguió entrar y de ahí ya mandar solicitudes GET
