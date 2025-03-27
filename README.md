@@ -9,6 +9,6 @@ We ingested data from the "attack_data" repository found on GitHub and used Splu
 ## SPL queries used
   
   # Brute Force:
-    ![Dashboard de Splunk](assets/Brute-Force1.png)
+    ![Dashboard de Splunk](Assets/Brute-Force1.png)
 
     
