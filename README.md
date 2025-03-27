@@ -55,6 +55,18 @@ Recomendaciones de mitigación:
 # Credential Dump
 We load a credential dump file from the T1003 folder "mimikatzwindows-sysmon.log"
 
+![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d429611e82a214a236bd279e5d156e32e6460f65/assets/credential.png)
 
+This time we're loading a single log, but we have several things to observe.
+The execution of mimikatz.exe was detected on win-host-mhaag-attack-range-622 with elevated privileges. Mimikatz is a tool used to steal credentials on Windows.
 
+Key Details:
+- mimikatz.exe executed from cmd.exe
+- User: Administrator
+- Location: C:\Users\Administrator\Downloads\mimikatz_trunk\x64\
+- Integrity Level: High (administrative privileges)
+- Date and Time: UTC 2022-11-16 19:52:32.795
+- User 2 session (possibly an RDP session)
+
+This could be an attempt to steal credentials or attempt lateral movement on the network.
 
