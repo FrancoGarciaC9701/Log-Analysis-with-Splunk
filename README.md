@@ -29,11 +29,30 @@ We load a phishing file from the T1566 folder "zscalar_web_proxy.json"
 
 ![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing1.png)
 ![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing2.png)
+![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e22a54a7e01fd864541ebe0b5ec6f0838499621f/assets/phishing3.png)
 
 
-Analizando los eventos nos damos cuenta de dos cosas:
-1. Tiene solicitudes GET y POST, es decir, que estuvo mandando solicitudes POST a través de una URL sospechosa hasta que consiguió entrar y de ahí ya mandar solicitudes GET
-2. Que la URL sospechosa venía cargada con diferentes payloads y la categoría "threatname" mostraba la amenaza detectada
+
+Analyzing the events, we notice three things:
+1. It has GET and POST requests, meaning it was sending POST requests through a suspicious URL until it managed to enter and then send GET requests.
+2. In the event_id = "012" the category filetype change of "none" to "GZIP", and the category action change of "Blocked" to "Allowed", indicating that at this time the attacker managed to compromise the machine and enter the server 
+3. The suspicious URL was loaded with different payloads, and the "threatname" category displayed the detected threat:
+   - event_id = 014,013,012,011,010,09,06 "r-Virus-r"
+   - event_id = 08 "r-malware-r"
+   - event_id = 07 "App.Exploit.RDSserviceDoS"
+This shows that the attacker was loading different types of attacks in order to gain connection to the web server.
+
+Focusing on the last GETs of event_id = "013 and 014":
+- Both requests attempt to access "dummy-url.example.com/test.dll," suggesting they attempted to execute or download a file on the compromised system.
+- The GZIP file is possibly compressed to hide its contents, but it was classified as malicious.
+- If the attacker managed to download "test.dll," they could have executed it on the system. This could be a backdoor, loader, or dropper for additional malware.
+- Although the GET requests were allowed, the HTTP code (403) indicates that the downloads were blocked due to some server restriction or security policy.
+
+Recomendaciones de mitigación:
+- Forensic Review: Analyze logs to confirm whether the test.dll file was downloaded and executed.
+- IoC Scan: Check suspicious hashes, URLs, and IP addresses using tools like VirusTotal.
+- Traffic Monitoring: Look for outgoing connections to suspicious servers.
+- Policy Enforcement: Review Zscaler rules to prevent unauthorized file executions.
 
 
     
