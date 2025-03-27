@@ -7,7 +7,7 @@ We ingested data from the "attack_data" repository found on GitHub and used Splu
 - Languages: SPL (Splunk Processing Language)
 
 ## SPL queries used
-!(https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8efc82f424620bd681fdef0d95f2c9145cb49a6b/assets/brute-force1.png)
+![Descripción de la imagen](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8efc82f424620bd681fdef0d95f2c9145cb49a6b/assets/brute-force1.png)
 
 
   # Brute Force:
