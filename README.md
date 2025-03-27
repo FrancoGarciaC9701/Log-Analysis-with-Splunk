@@ -25,10 +25,12 @@ We have several login attempts that give "Success" and then something fails from
 - Review the logs for other attack patterns
 
 # Phising
+We load a phishing file from the T1566 folder "zscalar_web_proxy.json"
 
 
-  
-  
+Analizando los eventos nos damos cuenta de dos cosas:
+1. Tiene solicitudes GET y POST, es decir, que estuvo mandando solicitudes POST a través de una URL sospechosa hasta que consiguió entrar y de ahí ya mandar solicitudes GET
+2. Que la URL sospechosa venía cargada con diferentes payloads y la categoría "threatname" mostraba la amenaza detectada
 
 
     
