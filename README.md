@@ -46,7 +46,7 @@ Focusing on the last GETs of event_id = "013 and 014":
 - If the attacker managed to download "test.dll," they could have executed it on the system. This could be a backdoor, loader, or dropper for additional malware.
 - Although the GET requests were allowed, the HTTP code (403) indicates that the downloads were blocked due to some server restriction or security policy.
 
-Recomendaciones de mitigación:
+Mitigation recommendations:
 - Forensic Review: Analyze logs to confirm whether the test.dll file was downloaded and executed.
 - IoC Scan: Check suspicious hashes, URLs, and IP addresses using tools like VirusTotal.
 - Traffic Monitoring: Look for outgoing connections to suspicious servers.
@@ -55,7 +55,7 @@ Recomendaciones de mitigación:
 # Credential Dump
 We load a credential dump file from the T1003 folder "mimikatzwindows-sysmon.log"
 
-![(phishing](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d429611e82a214a236bd279e5d156e32e6460f65/assets/credential.png)
+![(CredentialDump](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d429611e82a214a236bd279e5d156e32e6460f65/assets/credential.png)
 
 This time we're loading a single log, but we have several things to observe.
 The execution of mimikatz.exe was detected on win-host-mhaag-attack-range-622 with elevated privileges. Mimikatz is a tool used to steal credentials on Windows.
@@ -70,8 +70,33 @@ Key Details:
 
 This could be an attempt to steal credentials or attempt lateral movement on the network.
 
+Mitigation recommendations:
+- Isolate the host win-host-mhaag-attack-range-622
+- Terminate the mimikatz.exe process (PID 5636)
+- Audit compromised credentials and force password changes
+- Review network activity and related Sysmon events
+
 # Data Exfiltration
 We load a Data Exfiltration file from the T1020 folder "windows-security.log"
+
+![(DataExfiltration](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/64c13a359befbc2930a65dc418eb10659cfe0837/assets/rclone.png)
+
+- A program called "rclone.exe" is detected running with elevated privileges in "win-dc-137.attackrange.local". Rclone is a tool for transferring files to cloud services.
+- The process location is "C:\Users\Administrator\Downloads\rclone-v1.57.0-windows-amd64\rclone-v1.57.0-windows-amd64\rclone.exe"
+- The "rclone.exe mega" command may be a possible attempt to sync with MEGA and was executed from "powershell.exe"
+
+The folder contains 12 identical events using the rclone tool; the only differences are the "time" and "event_id".
+
+Mitigation recommendations:
+- Check if rclone.exe execution was authorized.
+- Review network logs to identify data transfers.
+- Look for connections to cloud storage services (MEGA, Google Drive, Dropbox, etc.).
+- Audit files accessed and transferred during this period.
+- Block rclone.exe execution if unauthorized.
+
+
+
+
 
 
 
