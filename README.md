@@ -181,9 +181,61 @@ Mitigation:
 
 # Privilege Escalation
 
+![(PrivilegeEscalation](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/39e692863942d4c4b32ee49b547152edb651caa6/assets/privilege-escalation.png)
 
+This report documents the privilege escalation events detected in the environment. It details the techniques used, the analysis of each event, and recommendations for mitigating these attacks.
 
+Event 1 (4673): Sensitive Privileges Requested by Winlogon (winlogon.exe)
+Winlogon requested sensitive privileges, which may indicate malicious activity or the exploitation of a system process.
+Mitigation:
+- Monitor 4673 events in Splunk and restrict access to winlogon.exe with security rules.
 
+Event 2 (4688): PsExec Executed with SYSTEM Privileges with psexec.exe
+PsExec was executed to gain SYSTEM access on a remote system.
+Mitigation:
+- Block PsExec with AppLocker and monitor 4688 events in Splunk.
+
+Event 3 (4674): User Added to Administrators Group with cmd.exe
+A user executed a command to add themselves to the Administrators group.
+Mitigation:
+- Configure alerts in Splunk to detect changes to privileged groups.
+
+Event 4(4697): Vulnerable Service Modification to Execute Commands as SYSTEM with sc.exe
+A vulnerable service was configured to execute commands with elevated privileges.
+Mitigation:
+- Review service modification permissions and audit configuration changes.
+
+Event 5(4688): UAC Bypass Exploit via DLL with rundll32.exe
+rundll32 was used to bypass UAC and execute commands with elevated privileges.
+Mitigation:
+- Restrict rundll32.exe with AppLocker and monitor 4688 events.
+
+Event 6(4103): Using RunAs to Run cmd as Administrator (powershell.exe)
+The RunAs command was used to gain elevated access.
+Mitigation:
+- Configure RunAs usage restrictions and monitor 4103 events.
+
+Event 7(4688): Debug Privilege Abuse with Task Manager (taskmgr.exe)
+A user attempted to run Task Manager in debug mode to escalate privileges.
+Mitigation:
+- Restrict debugging permissions and monitor suspicious processes.
+
+Event 8(4688): Using explorer.exe to bypass UAC with explorer.exe
+Explorer.exe was used to execute commands without enabling UAC.
+Mitigation:
+- Block this method with restrictions in AppLocker.
+
+Event 9(4688): Modifying Security Policies with Secedit with secedit.exe
+Secedit was used to change security settings.
+Mitigation:
+- Monitor 4688 events and block unauthorized changes.
+
+Event 10(4688): Creating a scheduled task with Administrator privileges using schtasks.exe
+A scheduled task was created to elevate privileges on the system.
+Mitigation:
+- Configure auditing for scheduled tasks and alerts in Splunk.
+
+# Network Scanning
 
 
 
