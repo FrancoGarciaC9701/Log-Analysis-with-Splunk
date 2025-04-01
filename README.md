@@ -241,44 +241,44 @@ Mitigation:
 This report details the detection of 10 network scanning events in the monitoring environment. Network scanning is a technique used to map hosts, services, and ports open for both legitimate and malicious purposes. The detected events are analyzed, and mitigation strategies are proposed.
 
 Event 1: This is an ARP Scan type that uses the "arp-scan -l" command. It scans the local network for active devices using ARP.
-Source IP: 192.168.1.109
-Target IP: 192.168.1.255
+- Source IP: 192.168.1.109
+- Target IP: 192.168.1.255
 
 Event 2: This is an SNMP Scan type that uses the "snmpwalk -v2c -c public 192.168.1.1" command. It performs an SNMP query on a device at IP address 192.168.1.1 using protocol version 2c and the "public" community to enumerate system information.
-Source IP: 192.168.1.108
-Target IP: 192.168.1.1
+- Source IP: 192.168.1.108
+- Target IP: 192.168.1.1
 
 Event 3: This is an SMB Reconnaissance scan type that uses the "nmap --script smb-enum-shares" command. -p 445 192.168.1.1" scans port 445 of a specific host (192.168.1.1) and uses the "smb-enum-shares" script to list the available SMB (Server Message Block) shares. This allows the identification of accessible folders and files on the network.
-Source IP: 192.168.1.107
-Target IP: 192.168.1.1
+- Source IP: 192.168.1.107
+- Target IP: 192.168.1.1
 
 Event 4: This is a Telnet Enumeration type scan that uses the command "telnet 192.168.1.1 23." It attempts to establish a Telnet connection to port 23 of the host 192.168.1.1, which can be used to access a remote terminal session if the service is enabled and accessible.
-Source IP: 192.168.1.106
-Target IP: 192.168.1.1
+- Source IP: 192.168.1.106
+- Target IP: 192.168.1.1
 
 Event 5: This is a ZMap Scan type scan that uses the command "zmap -p 22.3389 -o results.txt 192.168.1.0/24." It performs a bulk scan of the network. 192.168.1.0/24, specifically on ports 22 (SSH) and 3389 (RDP). The scan results are saved in a file named "results.txt".
-Source IP: 192.168.1.105
-Target IP: 192.168.1.255
+- Source IP: 192.168.1.105
+- Target IP: 192.168.1.255
 
 Event 6: This is a Netcat Banner Grabbing scan that uses the command "nc -v 192.168.1.1 80". It uses Netcat (nc) to attempt to establish a TCP connection to port 80 (HTTP) of the host 192.168.1.1. The -v option enables "verbose" mode, which means Netcat will provide more details about the connection, such as the success or failure of the connection, and any additional relevant information about the connection attempt. This command is commonly used to perform banner grabbing or to check if a web service is active on port 80.
-Source IP: 192.168.1.104
-Target IP: 192.168.1.1
+- Source IP: 192.168.1.104
+- Target IP: 192.168.1.1
 
 Event 7: This is a Masscan type of scan that uses the command "masscan -p 80,443 --rate 10000 192.168.1.0/24." It performs a quick scan of ports 80 (HTTP) and 443 (HTTPS) on all devices on the 192.168.1.0/24 network with a scan rate of 10,000 packets per second.
-Source IP: 192.168.1.103
-Target IP: 192.168.1.255
+- Source IP: 192.168.1.103
+- Target IP: 192.168.1.255
 
 Event 8: This is a Ping Sweep type of scan that uses the command "fping -g 192.168.1.0/24" performs a ping sweep on the 192.168.1.0/24 network IP range, sending ICMP packets to each IP address in that range to identify active hosts.
-Source IP: 192.168.1.102
-Target IP: 192.168.1.255
+- Source IP: 192.168.1.102
+- Target IP: 192.168.1.255
 
 Event 9: This is a type of Nmap UDP Scan that uses the command "nmap -sU -p 53,161 192.168.1.1." It performs a UDP scan on ports 53 (DNS) and 161 (SNMP) of host 192.168.1.1 to detect if these services are active and responding on the target system.
-Source IP: 192.168.1.101
-Target IP: 192.168.1.1
+- Source IP: 192.168.1.101
+- Target IP: 192.168.1.1
 
 Event 10: This is a type of Nmap SYN Scan that uses the command "nmap -sS -p 1-65535 192.168.1.1" to perform a SYN scan of all ports on host 192.168.1.1, detecting open services without completing the TCP connection.
-Source IP: 192.168.1.100
-Target IP: 192.168.1.1
+- Source IP: 192.168.1.100
+- Target IP: 192.168.1.1
 
 
 
