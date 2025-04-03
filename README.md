@@ -6,9 +6,6 @@ We ingested data from the "attack_data" repository found on GitHub and used Splu
 - Source of the logs: https://github.com/splunk/attack_data/tree/master
 - Languages: SPL (Splunk Processing Language)
 
-## SPL queries used
-images and brief explanation of the queries used
-
 # Brute Force
 We load a brute force file from the T1110.001 folder "high_number_of_login_failures_from_a_single_source.json" and run the following query
 
@@ -337,6 +334,53 @@ Event 10: The technique used is "Tor Proxy Connection" by executing the command 
 - Malicious Domain Blocking: Implement blacklists and DNS filtering to prevent connections to C2 servers.
 - Tunneling Detection: Inspect DNS, ICMP, and HTTPS traffic to identify anomalous communication patterns.
 - Auditing and Hardening: Enforce strong password policies and monitor administrative accounts.
+
+# Lateral Movement
+
+
+Event 1 - Execution of Malicious HTA via Network Share:
+andres_user executes a malicious HTA script from 192.168.1.55, using mshta.exe, a technique used to execute arbitrary code via malicious HTML files.
+
+Event 2 - Data Exfiltration via SCP:
+lucas_user transfers the /etc/passwd file from a Linux server to 192.168.1.50 using SCP, which may represent an attempt to exfiltrate sensitive credentials or data.
+
+Event 3 - Suspicious RDP Connection:
+An RDP connection from 192.168.1.30 to Francoserver is allowed by the firewall, which may indicate unauthorized remote access via compromised credentials.
+
+Event 4 - Malicious DLL Injection from Remote Share:
+martin_user executes rundll32.exe to load and execute malware.dll from Francoserver, a common tactic for injecting malicious code into legitimate system processes.
+
+Event 5 - Suspicious SSH Lateral Movement:
+pedro_user accesses 192.168.1.20 via SSH from LINUX-WEB01 as the root user on port 2222, suggesting a persistent access attempt or privilege escalation on Linux systems.
+
+Event 6 - Successful Remote Login via SMB:
+Administrator logs in to CLIENT03 from the IP address 192.168.1.15 using SMB, which may indicate the use of stolen credentials or forced authentication to move laterally on the network.
+
+Event 7 - Remote Execution via PsExec:
+sofia_admin uses PsExec.exe to execute a remote shell on CLIENT03, which may allow an attacker to covertly control the system with administrative privileges.
+
+Event 8 - Privilege Escalation Detected:
+carlos_admin gains elevated privileges on CLIENT02, triggering SeTcbPrivilege and SeDebugPrivilege, allowing manipulation of critical processes and access to credentials stored in memory.
+
+Event 9 - Remote Command Execution via WMI:
+maria_admin executes a remote command on CLIENT02 using wmic.exe, indicating possible lateral movement using WMI to execute whoami and verify the user on the compromised system.
+
+Event 10 - Pass-the-Hash Attack Attempt:
+juan_admin attempts to authenticate to Francoserver using NTLM, suggesting a Pass-the-Hash attack, where an attacker uses a hash instead of a password to authenticate without knowing the original key.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
