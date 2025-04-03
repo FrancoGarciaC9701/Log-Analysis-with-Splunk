@@ -231,6 +231,12 @@ A scheduled task was created to elevate privileges on the system.
 Mitigation:
 - Configure auditing for scheduled tasks and alerts in Splunk.
 
+Mitigations:
+- Implement detection rules in Splunk to monitor privilege escalation events.
+- Restrict the use of common attack tools such as PsExec, rundll32, and schtasks.
+- Regularly audit changes to administrator groups and service permissions.
+- Enforce the principle of least privilege and restrict user accounts.
+
 # Network Scanning
 This report details the detection of 10 network scanning events in the monitoring environment. Network scanning is a technique used to map hosts, services, and ports open for both legitimate and malicious purposes. The detected events are analyzed, and mitigation strategies are proposed.
 
@@ -276,7 +282,7 @@ Event 10: This is a type of Nmap SYN Scan that uses the command "nmap -sS -p 1-6
 - Source IP: 192.168.1.100
 - Target IP: 192.168.1.1
 
-# Mitigation:
+Mitigation:
 
 - Active Monitoring: Configure SIEM rules to alert on network scans and correlate events.
 - Firewall and ACLs: Restrict access to critical ports and apply access control lists.
@@ -326,7 +332,7 @@ Event 10: The technique used is "Tor Proxy Connection" by executing the command 
 - Source IP: 192.168.1.159
 - Target IP: 192.168.1.200
 
-# Mitigations:
+Mitigations:
 - Monitoring and Detection: Configure SIEM rules to alert on unusual traffic patterns and known C2 connections.
 - Firewall and ACLs: Restrict access to unnecessary ports, especially 22 (SSH), 3389 (RDP), and 445 (SMB).
 - Network Segmentation: Implement VLANs and microsegmentation to limit lateral movement.
@@ -369,12 +375,59 @@ Maria_admin executes a remote command on CLIENT02 using wmic.exe, indicating pos
 Event 10 - Pass-the-Hash Attack Attempt:
 Juan_admin attempts to authenticate to Francoserver using NTLM, suggesting a Pass-the-Hash attack, where an attacker uses a hash instead of a password to authenticate without knowing the original key.
 
-# Mitigations:
+Mitigations:
 - Account Security: Use the principle of least privilege and enable MFA.
 - Network Monitoring: Detect unusual SMB, RDP, and SSH connections.
 - Block Common Tools: Restrict the use of PsExec, wmic, rundll32, etc.
 - Log Security: Centralize events in a SIEM like Splunk with alert rules.
 - Network Segmentation: Limit unnecessary lateral access between devices.
+
+# Denial of Service (DoS)
+Denial of Service (DoS) attacks seek to saturate a system or service with malicious traffic, impacting its availability. This report analyzes 10 real-world DoS events detected at Francoserver, describing their impact, the methods used, and mitigation strategies. Volumetric, application, and amplified attacks are included, along with measures for their detection and prevention.
+
+
+
+Event 1 - Botnet Traffic: A botnet sends hundreds of thousands of requests to saturate the network and server services.
+Mitigation: Use IDS/IPS, malicious IP blacklists, and anti-DDoS solutions.
+
+Event 2 - Amplification Attack: Use of protocols such as NTP or SSDP to generate amplified traffic against the server.
+Mitigation: Disable non-essential services and filter traffic at the firewall.
+
+Event 3 - RDP DoS: Massive RDP connection attempts to consume server resources.
+Mitigation: Restrict RDP access with access control lists (ACLs) and enable MFA.
+
+Event 4 - SMB Flood: Sending excessive SMB requests to slow down or crash the service.
+Mitigation: Limit SMB access to authorized users only and monitor traffic with IDS.
+
+Event 5 - DNS Amplification: The attacker uses open DNS servers to send massive responses to the victim server.
+Mitigation: Restrict recursive DNS queries and enable DNS rate limiting.
+
+Event 6 - Slowloris: The attacker maintains multiple HTTP connections open without completing the request, exhausting server threads.
+Mitigation: Use timeout settings on the web server and enable mod_evasive in Apache or similar filters in Nginx.
+
+Event 7 - ICMP Flood: Sending massive ICMP (ping) packets to consume bandwidth and system resources.
+Mitigation: Restrict ICMP at the firewall level or limit its response rate.
+
+Event 8 - HTTP GET Flood: The attacker sends thousands of GET requests to /index.html, overloading the web server.
+Mitigation: Implement rate limiting and use a WAF to detect anomalous traffic.
+
+Event 9 - UDP Flood: A high volume of UDP packets floods DNS port 53, consuming bandwidth and resources.
+Mitigation: Configure limits on the DNS server and enable firewalls with attack pattern detection.
+
+Event 10 - SYN Flood: An attacker sends a large number of TCP SYN packets to Francoserver on port 80 without completing the handshake, overwhelming resources.
+Mitigation: Filter anomalous SYN traffic with firewall rules and enable SYN cookies on the server.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
