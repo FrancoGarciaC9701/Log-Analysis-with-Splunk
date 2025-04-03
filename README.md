@@ -1,9 +1,8 @@
 ## Log-Analysis-with-Splunk
-We ingested data from the "attack_data" repository found on GitHub and used Splunk to analyze the 10 most common types of attacks.
+This project demonstrates how to use Splunk to analyze security logs, detect suspicious events, and generate reports for cybersecurity decision-making.
 
 ## Technologies used
 - Splunk Enterprise
-- Source of the logs: https://github.com/splunk/attack_data/tree/master
 - Languages: SPL (Splunk Processing Language)
 
 # Brute Force
