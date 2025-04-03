@@ -417,7 +417,11 @@ Event 10 - SYN Flood: An attacker sends a large number of TCP SYN packets to Fra
 Mitigation: Filter anomalous SYN traffic with firewall rules and enable SYN cookies on the server.
 
 
+Any contribution and constructive criticism is welcome, thank you very much for taking the time to read it. I will soon be uploading more projects to my profile.
 
+Contact:
+Email: francogarcia9701@gmail.com
+LinkedIn: www.linkedin.com/in/franco-garcia9701
 
 
 
