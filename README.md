@@ -385,7 +385,7 @@ Mitigations:
 # Denial of Service (DoS)
 Denial of Service (DoS) attacks seek to saturate a system or service with malicious traffic, impacting its availability. This report analyzes 10 real-world DoS events detected at Francoserver, describing their impact, the methods used, and mitigation strategies. Volumetric, application, and amplified attacks are included, along with measures for their detection and prevention.
 
-
+![(LateralMovement](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/f5bd1be1ced35193bd8282ab97963d4c5460d4af/assets/denial_of_service.png)
 
 Event 1 - Botnet Traffic: A botnet sends hundreds of thousands of requests to saturate the network and server services.
 Mitigation: Use IDS/IPS, malicious IP blacklists, and anti-DDoS solutions.
