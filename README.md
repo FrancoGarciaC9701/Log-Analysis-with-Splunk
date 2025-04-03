@@ -177,10 +177,9 @@ Mitigation:
 
 
 # Privilege Escalation
+This report documents the privilege escalation events detected in the environment. It details the techniques used, the analysis of each event, and recommendations for mitigating these attacks.
 
 ![(PrivilegeEscalation](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/39e692863942d4c4b32ee49b547152edb651caa6/assets/privilege-escalation.png)
-
-This report documents the privilege escalation events detected in the environment. It details the techniques used, the analysis of each event, and recommendations for mitigating these attacks.
 
 Event 1 (4673): Sensitive Privileges Requested by Winlogon (winlogon.exe)
 Winlogon requested sensitive privileges, which may indicate malicious activity or the exploitation of a system process.
@@ -233,9 +232,9 @@ Mitigation:
 - Configure auditing for scheduled tasks and alerts in Splunk.
 
 # Network Scanning
-![(NetworkScanning](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/2b7c379f302ea058ab4d23280fa10d0be01d7424/assets/network-scanning.png)
-
 This report details the detection of 10 network scanning events in the monitoring environment. Network scanning is a technique used to map hosts, services, and ports open for both legitimate and malicious purposes. The detected events are analyzed, and mitigation strategies are proposed.
+
+![(NetworkScanning](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/2b7c379f302ea058ab4d23280fa10d0be01d7424/assets/network-scanning.png)
 
 Event 1: This is an ARP Scan type that uses the "arp-scan -l" command. It scans the local network for active devices using ARP.
 - Source IP: 192.168.1.109
@@ -336,38 +335,46 @@ Event 10: The technique used is "Tor Proxy Connection" by executing the command 
 - Auditing and Hardening: Enforce strong password policies and monitor administrative accounts.
 
 # Lateral Movement
+This report documents 10 simulated lateral movement events in a controlled environment using the main server, Francoserver. The events reflect real-life techniques used by attackers to move between systems, gain privileges, and compromise additional resources. Activities include the use of PsExec, WMI, rundll32, SSH and RDP connections, and data exfiltration using SCP.
 
+![(LateralMovement](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e632122b0cf02388fec2e346205bdf286231cf7c/assets/lateral_movement.png)
 
 Event 1 - Execution of Malicious HTA via Network Share:
-andres_user executes a malicious HTA script from 192.168.1.55, using mshta.exe, a technique used to execute arbitrary code via malicious HTML files.
+Andres_user executes a malicious HTA script from 192.168.1.55, using mshta.exe, a technique used to execute arbitrary code via malicious HTML files.
 
 Event 2 - Data Exfiltration via SCP:
-lucas_user transfers the /etc/passwd file from a Linux server to 192.168.1.50 using SCP, which may represent an attempt to exfiltrate sensitive credentials or data.
+Lucas_user transfers the /etc/passwd file from a Linux server to 192.168.1.50 using SCP, which may represent an attempt to exfiltrate sensitive credentials or data.
 
 Event 3 - Suspicious RDP Connection:
 An RDP connection from 192.168.1.30 to Francoserver is allowed by the firewall, which may indicate unauthorized remote access via compromised credentials.
 
 Event 4 - Malicious DLL Injection from Remote Share:
-martin_user executes rundll32.exe to load and execute malware.dll from Francoserver, a common tactic for injecting malicious code into legitimate system processes.
+Martin_user executes rundll32.exe to load and execute malware.dll from Francoserver, a common tactic for injecting malicious code into legitimate system processes.
 
 Event 5 - Suspicious SSH Lateral Movement:
-pedro_user accesses 192.168.1.20 via SSH from LINUX-WEB01 as the root user on port 2222, suggesting a persistent access attempt or privilege escalation on Linux systems.
+Pedro_user accesses 192.168.1.20 via SSH from LINUX-WEB01 as the root user on port 2222, suggesting a persistent access attempt or privilege escalation on Linux systems.
 
 Event 6 - Successful Remote Login via SMB:
 Administrator logs in to CLIENT03 from the IP address 192.168.1.15 using SMB, which may indicate the use of stolen credentials or forced authentication to move laterally on the network.
 
 Event 7 - Remote Execution via PsExec:
-sofia_admin uses PsExec.exe to execute a remote shell on CLIENT03, which may allow an attacker to covertly control the system with administrative privileges.
+Sofia_admin uses PsExec.exe to execute a remote shell on CLIENT03, which may allow an attacker to covertly control the system with administrative privileges.
 
 Event 8 - Privilege Escalation Detected:
-carlos_admin gains elevated privileges on CLIENT02, triggering SeTcbPrivilege and SeDebugPrivilege, allowing manipulation of critical processes and access to credentials stored in memory.
+Carlos_admin gains elevated privileges on CLIENT02, triggering SeTcbPrivilege and SeDebugPrivilege, allowing manipulation of critical processes and access to credentials stored in memory.
 
 Event 9 - Remote Command Execution via WMI:
-maria_admin executes a remote command on CLIENT02 using wmic.exe, indicating possible lateral movement using WMI to execute whoami and verify the user on the compromised system.
+Maria_admin executes a remote command on CLIENT02 using wmic.exe, indicating possible lateral movement using WMI to execute whoami and verify the user on the compromised system.
 
 Event 10 - Pass-the-Hash Attack Attempt:
-juan_admin attempts to authenticate to Francoserver using NTLM, suggesting a Pass-the-Hash attack, where an attacker uses a hash instead of a password to authenticate without knowing the original key.
+Juan_admin attempts to authenticate to Francoserver using NTLM, suggesting a Pass-the-Hash attack, where an attacker uses a hash instead of a password to authenticate without knowing the original key.
 
+# Mitigations:
+- Account Security: Use the principle of least privilege and enable MFA.
+- Network Monitoring: Detect unusual SMB, RDP, and SSH connections.
+- Block Common Tools: Restrict the use of PsExec, wmic, rundll32, etc.
+- Log Security: Centralize events in a SIEM like Splunk with alert rules.
+- Network Segmentation: Limit unnecessary lateral access between devices.
 
 
 
