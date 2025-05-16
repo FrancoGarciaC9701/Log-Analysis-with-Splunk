@@ -12,8 +12,8 @@ We load a brute force file from the T1110.001 folder "high_number_of_login_failu
 
 This shows us the query
 
-![(assets/brute-force-results1.png)](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8e27b696edf5111cb65304249b8855f09e722c2e/assets/brute-force-results1.png)
-![(assets/brute-force-results1.2.png)](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8e27b696edf5111cb65304249b8855f09e722c2e/assets/brute-force-results1.2.png)
+![BruteForce1](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8e27b696edf5111cb65304249b8855f09e722c2e/assets/brute-force-results1.png)
+![BruteForce2](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/8e27b696edf5111cb65304249b8855f09e722c2e/assets/brute-force-results1.2.png)
 
 We have several login attempts that give "Success" and then something fails from IP 73.15.72.101. The person at this IP is trying to access with several emails within the "rodsoto.onmicrosoft.com" domain. This is considered a typical brute force attack or credential spoofing procedure. Therefore, the measures to take are:
 - Temporarily block the IP and activate MFA
