@@ -342,7 +342,7 @@ Mitigations:
 # Lateral Movement
 This report documents 10 simulated lateral movement events in a controlled environment using the main server, Francoserver. The events reflect real-life techniques used by attackers to move between systems, gain privileges, and compromise additional resources. Activities include the use of PsExec, WMI, rundll32, SSH and RDP connections, and data exfiltration using SCP.
 
-![(LateralMovement](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e632122b0cf02388fec2e346205bdf286231cf7c/assets/lateral_movement.png)
+![LateralMovement](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/e632122b0cf02388fec2e346205bdf286231cf7c/assets/lateral_movement.png)
 
 Event 1 - Execution of Malicious HTA via Network Share:
 Andres_user executes a malicious HTA script from 192.168.1.55, using mshta.exe, a technique used to execute arbitrary code via malicious HTML files.
@@ -384,7 +384,7 @@ Mitigations:
 # Denial of Service (DoS)
 Denial of Service (DoS) attacks seek to saturate a system or service with malicious traffic, impacting its availability. This report analyzes 10 real-world DoS events detected at Francoserver, describing their impact, the methods used, and mitigation strategies. Volumetric, application, and amplified attacks are included, along with measures for their detection and prevention.
 
-![(LateralMovement](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/f5bd1be1ced35193bd8282ab97963d4c5460d4af/assets/denial_of_service.png)
+![LateralMovement](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/f5bd1be1ced35193bd8282ab97963d4c5460d4af/assets/denial_of_service.png)
 
 Event 1 - Botnet Traffic: A botnet sends hundreds of thousands of requests to saturate the network and server services.
 Mitigation: Use IDS/IPS, malicious IP blacklists, and anti-DDoS solutions.
